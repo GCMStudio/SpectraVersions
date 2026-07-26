@@ -1,50 +1,38 @@
 # SpectraVersions
 
-Official repository for storing and distributing version manifests for the **Spectra Anti-Cheat** system.
+A repository for storing and distributing version information for the **Spectra** anti-cheat system.
 
-This repository is used by the Spectra ecosystem to provide version information, release history, changelogs, and update metadata for the Spectra Updater and related services.
+This repository serves as the official source for version metadata used by the Spectra ecosystem, allowing clients and tools to check for updates, compatibility, and release information.
 
----
+## 📦 Repository Purpose
 
-## 📦 Purpose
+The repository contains the `versions.json` file, which provides information such as:
 
-This repository stores the version data used throughout the Spectra ecosystem, including:
+* Latest available version
+* Minimum supported version
+* Update severity
+* Release date
+* Build information
+* Changelog references
 
-- Latest stable release
-- Version history
-- Changelogs
-- Build information
-- Update severity
-- Minimum supported version
+## 🌐 Used By
 
-Applications such as the **Spectra Updater** use this repository to determine whether a newer version is available and to retrieve update information.
+This repository is used by components of the Spectra ecosystem, including:
 
----
-
-## 📁 Repository Structure
-
-```text
-.
-├── versions.json      # Version manifest
-├── changelogs/        # Release notes (optional)
-└── README.md
-```
-
----
+* Spectra API
+* Spectra Installer
+* Spectra Updater
+* Spectra Studio Plugin
 
 ## 📜 License
 
-Copyright © **GCM Studios**. All rights reserved.
+This project is licensed under the **MIT License**.
 
-This repository is intended exclusively for the Spectra ecosystem.
+See the [LICENSE](LICENSE) file for more information.
 
 ---
 
-<div align="center">
-
-### Made and distributed by **GCM Studios**
-
-```text
+```
 ░██████╗░░█████╗░███╗░░░███╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
 ██╔════╝░██╔══██╗████╗░████║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
 ██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗░░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
