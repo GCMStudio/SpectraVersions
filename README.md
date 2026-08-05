@@ -8,35 +8,35 @@ This repository serves as the official source for version metadata used by the S
 
 The repository contains the `versions.json` file, which provides information such as:
 
-* Latest available version
-* Minimum supported version
-* Update severity
-* Release date
-* Build information
-* Changelog references
+- Latest available version
+- Minimum supported version
+- Update severity
+- Release date
+- Build information
+- Changelog references
 
 ## 🌐 Used By
 
 This repository is used by components of the Spectra ecosystem, including:
 
-* Spectra API
-* Spectra Installer
-* Spectra Updater
-* Spectra Studio Plugin
+- Spectra API
+- Spectra Installer
+- Spectra Updater
+- Spectra Studio Plugin
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **Apache License 2.0**, with additional trademark terms covering use of the "Spectra" name.
 
-See the [LICENSE](LICENSE) file for more information.
+See the [LICENSE](https://github.com/GCMStudio/SpectraVersions/blob/main/LICENSE) and [TRADEMARKS.md](https://github.com/GCMStudio/SpectraVersions/blob/main/TRADEMARKS.md) files for more information.
 
 ---
 
 ```
-░██████╗░░█████╗░███╗░░░███╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
-██╔════╝░██╔══██╗████╗░████║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
-██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗░░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
-██║░░╚██╗██║░░██╗██║╚██╔╝██║  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
-╚██████╔╝╚█████╔╝██║░╚═╝░██║  ██████╔╝░░░██║░░░╚██████╔╝██████╔╝██║╚█████╔╝
-░╚═════╝░░╚════╝░╚═╝░░░░░╚═╝  ╚═════╝░░░░╚═╝░░░░╚═════╝░╚═════╝░╚═╝░╚════╝░
+░██████╗░░█████╗░███╗░░░███╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
+██╔════╝░██╔══██╗████╗░████║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
+██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗░░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
+██║░░╚██╗██║░░██╗██║╚██╔╝██║  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
+╚██████╔╝╚█████╔╝██║░╚═╝░██║  ██████╔╝░░░██║░░░╚██████╔╝██████╔╝██║╚█████╔╝
+░╚═════╝░░╚════╝░╚═╝░░░░░╚═╝  ╚═════╝░░░░╚═╝░░░░╚═════╝░╚═════╝░╚═╝░╚════╝░
 ```
