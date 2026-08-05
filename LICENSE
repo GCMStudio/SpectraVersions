@@ -86,14 +86,25 @@ conditions of this License.
 6. Trademarks.
 
 This License does not grant permission to use the trade names,
-trademarks, service marks, or product names of the Licensor,
+trademarks, service marks, logos, or product names of the Licensor,
 except as required for reasonable and customary use in describing
 the origin of the Work.
 
-The name "Spectra" and "GCM Studio" remain trademarks and identifiers
+The names "Spectra" and "GCM Studio" remain trademarks and identifiers
 of their respective owners.
 
-Modified versions must not imply official endorsement by GCM Studio.
+The use of the name "Spectra" is permitted for compatibility,
+reference, and integration purposes, provided that such use does not
+create confusion regarding official ownership, endorsement, or
+maintenance by GCM Studio.
+
+Extensions, plugins, modules, integrations, and community projects may
+reference Spectra when clearly indicating that they are independent
+projects and are not official releases maintained by GCM Studio.
+
+Modified versions, forks, or derivative works must not present
+themselves as official Spectra releases, products, or distributions
+without explicit authorization from GCM Studio.
 
 7. Disclaimer of Warranty.
 
