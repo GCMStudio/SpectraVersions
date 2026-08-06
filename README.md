@@ -30,7 +30,7 @@ This project is licensed under the **Apache License 2.0**, with a modified
 Trademarks section covering use of the "Spectra" and "GCM Studio" names.
 
 See the [LICENSE](https://github.com/GCMStudio/SpectraVersions/blob/main/LICENSE)
-[NOTICE](https://github.com/GCMStudio/SpectraVersions/blob/main/NOTICE)), and
+[NOTICE](https://github.com/GCMStudio/SpectraVersions/blob/main/NOTICE), and
 [TRADEMARKS.md](https://github.com/GCMStudio/SpectraVersions/blob/main/TRADEMARKS.md)
 files for more information.
 
