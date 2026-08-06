@@ -26,16 +26,20 @@ This repository is used by components of the Spectra ecosystem, including:
 
 ## 📜 License
 
-This project is licensed under the **Apache License 2.0**, with additional trademark terms covering use of the "Spectra" name.
+This project is licensed under the **Apache License 2.0**, with a modified
+Trademarks section covering use of the "Spectra" and "GCM Studio" names.
 
-See the [LICENSE](https://github.com/GCMStudio/SpectraVersions/blob/main/LICENSE) and [TRADEMARKS.md](https://github.com/GCMStudio/SpectraVersions/blob/main/TRADEMARKS.md) files for more information.
+See the [LICENSE.md](https://github.com/GCMStudio/SpectraVersions/blob/main/LICENSE.md),
+[NOTICE.md](https://github.com/GCMStudio/SpectraVersions/blob/main/NOTICE.md), and
+[TRADEMARKS.md](https://github.com/GCMStudio/SpectraVersions/blob/main/TRADEMARKS.md)
+files for more information.
 
 ---
 
 ```
 ░██████╗░░█████╗░███╗░░░███╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
 ██╔════╝░██╔══██╗████╗░████║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
-██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗░░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
+██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
 ██║░░╚██╗██║░░██╗██║╚██╔╝██║  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
 ╚██████╔╝╚█████╔╝██║░╚═╝░██║  ██████╔╝░░░██║░░░╚██████╔╝██████╔╝██║╚█████╔╝
 ░╚═════╝░░╚════╝░╚═╝░░░░░╚═╝  ╚═════╝░░░░╚═╝░░░░╚═════╝░╚═════╝░╚═╝░╚════╝░
