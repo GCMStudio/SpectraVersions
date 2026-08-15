@@ -15,6 +15,62 @@ The repository contains the `versions.json` file, which provides information suc
 - Build information
 - Changelog references
 
+## 🔌 API
+
+Base URL (produção): `https://<seu-deploy>.vercel.app`
+
+| Endpoint | Método | Query params | Descrição |
+| --- | --- | --- | --- |
+| `/api/check` | GET | `current` ou `version` (opcional, ex: `beta_1.0`) | Retorna a última versão e se o cliente informado precisa atualizar. |
+| `/api/versions` | GET | — | Lista todas as versões cadastradas, da mais nova pra mais antiga. |
+| `/api/version` | GET | `id` (obrigatório, ex: `beta_1.0`) | Retorna a metadata de uma versão específica. |
+
+### `GET /api/check`
+
+```json
+{
+  "latestVersion": "beta_1.0",
+  "needsUpdate": true,
+  "belowMinimum": false,
+  "downloadUrl": "https://raw.githubusercontent.com/GCMStudio/SpectraVersions/main/versions/beta_1.0.rbxmx",
+  "severity": "none",
+  "minimumVersion": "beta_1.0",
+  "releaseDate": "2026-06-02",
+  "build": 100,
+  "changelog": ["..."],
+  "currentBuild": 90,
+  "latestBuild": 100
+}
+```
+
+`needsUpdate` e `belowMinimum` são calculados comparando o `build` (numérico) da versão
+informada com o `build` da última versão e da `minimumVersion`, respectivamente — mais
+confiável do que comparar as strings de versão diretamente. `belowMinimum` vem `null`
+quando não é possível calcular (ex.: a versão informada não está cadastrada).
+
+### Adicionando uma nova versão
+
+Edite `data/versions.json`: acrescente uma nova chave dentro de `"versions"` e, quando
+ela for a versão pública mais recente, aponte `"latest"` pra ela. Nenhum outro arquivo
+precisa mudar — os três endpoints acima leem sempre desse arquivo.
+
+```json
+{
+    "latest": "beta_1.1",
+    "versions": {
+        "beta_1.0": { "...": "..." },
+        "beta_1.1": {
+            "minimumVersion": "beta_1.0",
+            "build": 110,
+            "releaseDate": "2026-07-10",
+            "severity": "recommended",
+            "changelog": ["..."],
+            "downloadUrl": "https://raw.githubusercontent.com/GCMStudio/SpectraVersions/main/versions/beta_1.1.rbxmx"
+        }
+    }
+}
+```
+
 ## 🌐 Used By
 
 This repository is used by components of the Spectra ecosystem, including:
