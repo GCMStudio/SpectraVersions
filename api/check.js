@@ -1,35 +1,45 @@
-import fs from "fs";
-import path from "path";
+import { getLatest, getVersion, buildOf, handleCors } from "./_lib/versions.js";
 
 export default function handler(req, res) {
+    if (handleCors(req, res)) return;
+
     try {
         const currentVersion =
             req.query.current ||
             req.query.version ||
             "0.0.0";
 
-        const filePath = path.join(
-            process.cwd(),
-            "data",
-            "versions.json"
-        );
+        const latest = getLatest();
+        const currentInfo = getVersion(currentVersion);
 
-        const config = JSON.parse(
-            fs.readFileSync(filePath, "utf8")
-        );
+        const currentBuild = buildOf(currentInfo);
+        const latestBuild = buildOf(latest);
+        
+        const needsUpdate =
+            currentBuild !== null && latestBuild !== null
+                ? currentBuild < latestBuild
+                : currentVersion !== latest.id;
 
-        const latest = config.latest;
-        const latestInfo = config.versions[latest];
+        const minimumInfo = latest.minimumVersion ? getVersion(latest.minimumVersion) : null;
+        const minimumBuild = buildOf(minimumInfo);
+
+        const belowMinimum =
+            currentBuild !== null && minimumBuild !== null
+                ? currentBuild < minimumBuild
+                : null;
 
         return res.status(200).json({
-            latestVersion: latest,
-            needsUpdate: currentVersion !== latest,
-            downloadUrl: latestInfo.downloadUrl,
-            severity: latestInfo.severity,
-            minimumVersion: latestInfo.minimumVersion,
-            releaseDate: latestInfo.releaseDate,
-            build: latestInfo.build,
-            changelog: latestInfo.changelog
+            latestVersion: latest.id,
+            needsUpdate,
+            belowMinimum,
+            downloadUrl: latest.downloadUrl,
+            severity: latest.severity,
+            minimumVersion: latest.minimumVersion,
+            releaseDate: latest.releaseDate,
+            build: latest.build,
+            changelog: latest.changelog,
+            currentBuild,
+            latestBuild
         });
 
     } catch (err) {
