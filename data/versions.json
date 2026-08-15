@@ -1,42 +1,18 @@
-import fs from "fs";
-import path from "path";
+{
+    "latest": "beta_1.0",
 
-export default function handler(req, res) {
-    try {
-        const currentVersion =
-            req.query.current ||
-            req.query.version ||
-            "0.0.0";
+    "versions": {
+        "beta_1.0": {
+            "minimumVersion": "beta_1.0",
+            "build": 100,
+            "releaseDate": "2026-06-02",
+            "severity": "none",
 
-        const filePath = path.join(
-            process.cwd(),
-            "data",
-            "versions.json"
-        );
+            "changelog": [
+                "First public version of Spectra Anti-Cheat. All code works, but is not suitable for public games."
+            ],
 
-        const config = JSON.parse(
-            fs.readFileSync(filePath, "utf8")
-        );
-
-        const latest = config.latest;
-        const latestInfo = config.versions[latest];
-
-        return res.status(200).json({
-            latestVersion: latest,
-            needsUpdate: currentVersion !== latest,
-            downloadUrl: latestInfo.downloadUrl,
-            severity: latestInfo.severity,
-            minimumVersion: latestInfo.minimumVersion,
-            releaseDate: latestInfo.releaseDate,
-            build: latestInfo.build,
-            changelog: latestInfo.changelog
-        });
-
-    } catch (err) {
-
-        return res.status(500).json({
-            error: err.message
-        });
-
+            "downloadUrl": "https://raw.githubusercontent.com/GCMStudio/SpectraVersions/main/versions/beta_1.0.rbxmx"
+        }
     }
 }
