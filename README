@@ -19,11 +19,12 @@ The repository contains the `versions.json` file, which provides information suc
 
 Base URL (produção): `https://<seu-deploy>.vercel.app`
 
-| Endpoint | Método | Query params | Descrição |
-| --- | --- | --- | --- |
-| `/api/check` | GET | `current` ou `version` (opcional, ex: `beta_1.0`) | Retorna a última versão e se o cliente informado precisa atualizar. |
-| `/api/versions` | GET | — | Lista todas as versões cadastradas, da mais nova pra mais antiga. |
-| `/api/version` | GET | `id` (obrigatório, ex: `beta_1.0`) | Retorna a metadata de uma versão específica. |
+| Endpoint  | Método | Query params | Descrição |
+| --- | --- | --- | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- |  | --- |  | --- | 
+| `/api/check`    | GET | `current` ou `version` (opcional, ex: `beta_1.0`) | Retorna a última versão e se o cliente informado precisa atualizar. |
+| `/api/versions` | GET |  Lista todas as versões cadastradas, da mais nova pra mais antiga.                                                      |
+| `/api/version`  | GET | `id` (obrigatório, ex: `beta_1.0`) | Retorna a metadata de uma versão específica.                                       |
+| --- | --- | --- | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- | | --- |  | --- |  | --- | 
 
 ### `GET /api/check`
 
