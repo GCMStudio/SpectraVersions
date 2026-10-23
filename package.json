@@ -4,7 +4,7 @@
     "description": "Official version registry and update-check API for Spectra Anti-Cheat.",
     "private": true,
     "type": "module",
-    "license": "SEE LICENSE IN LICENSE",
+    "license": "Apache-2.0",
     "engines": {
         "node": ">=18"
     },
