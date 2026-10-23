@@ -1,30 +1,33 @@
-import { getVersion, handleCors } from "./_lib/versions.js";
+import {
+    getVersion,
+    prepare,
+    singleParam,
+    sendClientError,
+    sendServerError
+} from "./_lib/versions.js";
 
 export default function handler(req, res) {
-    if (handleCors(req, res)) return;
+    if (prepare(req, res)) return;
 
-    const id = req.query.id;
+    const { value: id, invalid } = singleParam(req.query.id);
+
+    if (invalid) {
+        return sendClientError(res, 400, "Parameter 'id' must be a single value.");
+    }
 
     if (!id) {
-        return res.status(400).json({
-            error: "Parâmetro 'id' é obrigatório (ex: ?id=beta_1.0)."
-        });
+        return sendClientError(res, 400, "Parameter 'id' is required (e.g. ?id=beta_1.0).");
     }
 
     try {
         const info = getVersion(id);
 
         if (!info) {
-            return res.status(404).json({
-                error: `Versão '${id}' não encontrada.`
-            });
+            return sendClientError(res, 404, "Version not found.");
         }
 
         return res.status(200).json(info);
-
     } catch (err) {
-        return res.status(500).json({
-            error: err.message
-        });
+        return sendServerError(res, err);
     }
 }

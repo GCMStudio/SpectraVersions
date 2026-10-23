@@ -1,7 +1,10 @@
 Spectra Anti-Cheat
 Copyright (c) 2026 GCM Studio
 
-Spectra is an open-source anti-cheat framework developed by GCM Studio.
+This repository (SpectraVersions) contains the version registry and the
+update-check API used by Spectra Anti-Cheat. The Spectra Anti-Cheat
+framework itself is developed by GCM Studio.
+
 The source code is licensed under the Apache License, Version 2.0, with
 a modified Trademarks section (see LICENSE).
 

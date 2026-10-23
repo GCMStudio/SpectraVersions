@@ -20,5 +20,5 @@ In addition, the following applies specifically to this project:
 
 This file is provided for clarity and does not modify the terms of the
 Apache License, Version 2.0. It is the canonical plain-language reference
-for this project's trademark policy; the NOTICE.md file points here
+for this project's trademark policy; the `NOTICE` file points here
 rather than repeating this policy in full.
