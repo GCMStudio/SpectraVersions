@@ -10,7 +10,7 @@
 [![API](https://img.shields.io/badge/API-Production-2563eb?style=flat-square)](https://spectra-api-gcmstudio.vercel.app)
 [![License](https://img.shields.io/badge/License-Apache%202.0-22c55e?style=flat-square)](LICENSE)
 
-[API Reference](#api-reference) · [Version Management](#version-management) · [Response Fields](#response-fields) · [License & Trademarks](#license--trademarks)
+[API Reference](#api-reference) · [Version Management](#version-management) · [Response Fields](#response-fields) · [Security](#security) · [License & Trademarks](#license--trademarks)
 
 </div>
 
@@ -26,7 +26,8 @@ Version metadata is maintained centrally, so the API endpoints can serve consist
 - **Update checks** — compares client and release build numbers.
 - **Compatibility metadata** — defines the minimum supported version.
 - **Release details** — exposes build numbers, release dates, and changelogs.
-- **Download references** — provides the configured release artifact URL.
+- **Download references** — provides the configured release artifact URL, pinned to a tag.
+- **Artifact integrity** — publishes the SHA-256 of each release so clients can verify downloads.
 - **Update severity** — communicates the severity assigned to a release.
 - **API access** — makes version information available to Spectra components.
 
@@ -241,13 +242,15 @@ SpectraVersions supports version management for components in the Spectra ecosys
 | `scripts/validate.js` | Registry and artifact-hash validation (`npm run validate`). |
 | `tests/` | Automated tests (`npm test`). |
 | `.github/workflows/ci.yml` | CI: validation and tests on every push and pull request. |
-| `package.json` | Declares ES modules and the minimum Node.js version. |
+| `package.json` | Declares ES modules, the minimum Node.js version and the project scripts. |
+| `.gitattributes` | Keeps release artifacts byte-identical so their SHA-256 never changes. |
+| `.gitignore` | Files excluded from version control. |
 | `SECURITY.md` | How to report vulnerabilities. |
 | `data/versions.json` | Central version metadata registry. |
 | `versions/` | Release artifacts referenced by version metadata. |
-| `LICENSE` | Project license. |
-| `NOTICE` | License notices. |
-| `TRADEMARKS.md` | Trademark terms for Spectra and GCM Studio. |
+| `LICENSE` | Apache License 2.0 (official, unmodified text). |
+| `NOTICE` | Copyright and attribution notices. |
+| `TRADEMARKS.md` | Trademark policy for Spectra and GCM Studio (separate from the license). |
 | `vercel.json` | Vercel deployment configuration. |
 
 ## License & Trademarks
@@ -260,7 +263,7 @@ Review the repository's legal documents:
 - [NOTICE](NOTICE)
 - [TRADEMARKS.md](TRADEMARKS.md)
 
-The project license and trademark permissions are distinct. Use of the Spectra or GCM Studio names must follow the applicable trademark terms.
+The project license and trademark permissions are distinct. The Apache License 2.0 does not grant rights to the Spectra or GCM Studio names; their use must follow the trademark policy.
 
 ---
 
