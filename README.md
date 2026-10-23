@@ -8,7 +8,7 @@
 
 [![Repository](https://img.shields.io/badge/GitHub-GCMStudio%2FSpectraVersions-181717?style=flat-square&logo=github)](https://github.com/GCMStudio/SpectraVersions)
 [![API](https://img.shields.io/badge/API-Production-2563eb?style=flat-square)](https://spectra-api-gcmstudio.vercel.app)
-[![License](https://img.shields.io/badge/License-Apache%202.0%20(modified)-22c55e?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-22c55e?style=flat-square)](LICENSE)
 
 [API Reference](#api-reference) · [Version Management](#version-management) · [Response Fields](#response-fields) · [License & Trademarks](#license--trademarks)
 
@@ -252,7 +252,7 @@ SpectraVersions supports version management for components in the Spectra ecosys
 
 ## License & Trademarks
 
-SpectraVersions is licensed under the **Apache License 2.0 with a modified Trademarks section (Section 6)** covering the names **Spectra** and **GCM Studio**.
+SpectraVersions is licensed under the **Apache License 2.0**. The names **Spectra** and **GCM Studio** are covered separately by the trademark policy in [TRADEMARKS.md](TRADEMARKS.md).
 
 Review the repository's legal documents:
 
