@@ -1,18 +1,17 @@
 {
+    "$schema": "../schema/versions.schema.json",
     "latest": "beta_1.0",
-
     "versions": {
         "beta_1.0": {
             "minimumVersion": "beta_1.0",
             "build": 100,
             "releaseDate": "2026-06-02",
             "severity": "none",
-
             "changelog": [
                 "First public version of Spectra Anti-Cheat. All code works, but is not suitable for public games."
             ],
-
-            "downloadUrl": "https://raw.githubusercontent.com/GCMStudio/SpectraVersions/main/versions/beta_1.0.rbxmx"
+            "sha256": "473329d36a2a615f55de56ed4676ebf8d0c1931abe0c21ca2f553b067e3554d9",
+            "downloadUrl": "https://raw.githubusercontent.com/GCMStudio/SpectraVersions/refs/tags/beta_1.0/versions/beta_1.0.rbxmx"
         }
     }
 }

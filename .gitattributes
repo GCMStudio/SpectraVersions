@@ -1,0 +1,4 @@
+# Keep release artifacts byte-for-byte identical, otherwise their SHA-256 changes.
+versions/*.rbxmx -text
+data/*.json text eol=lf
+*.js text eol=lf
