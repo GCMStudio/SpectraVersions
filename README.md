@@ -1,54 +1,79 @@
+ <div align="center">
+
 # SpectraVersions
 
-**Official version metadata repository for the Spectra Anti-Cheat ecosystem.**
+### Official Version Metadata for Spectra Anti-Cheat
 
-SpectraVersions provides a centralized source of truth for release metadata, version compatibility, update requirements, and build information across the Spectra ecosystem.
+A centralized version registry powering release tracking, compatibility checks, and update management across the Spectra ecosystem.
 
-Designed to work alongside the Spectra API and its associated tools, this repository enables consistent version checks and reliable update management.
+[![GitHub Repository](https://img.shields.io/badge/GitHub-GCMStudio%2FSpectraVersions-181717?style=flat-square&logo=github)](https://github.com/GCMStudio/SpectraVersions)
+[![API](https://img.shields.io/badge/API-Version%20Registry-2563eb?style=flat-square)](#api-reference)
+[![License](https://img.shields.io/badge/License-Apache%202.0-22c55e?style=flat-square)](LICENSE)
+
+**[Repository](https://github.com/GCMStudio/SpectraVersions) · [API Reference](#api-reference) · [Version Management](#version-management) · [License](#license--trademarks)**
+
+</div>
+
+---
 
 ## Overview
 
-SpectraVersions maintains version metadata through a centralized `data/versions.json` file.
+SpectraVersions is the official version metadata repository for the **Spectra Anti-Cheat ecosystem**.
 
-The metadata includes:
+It provides a centralized source of truth for release information, allowing integrated clients and tools to determine the latest available version, verify compatibility, and identify required updates.
 
-- **Version Management** — Identifies the latest available release.
-- **Compatibility** — Defines the minimum supported version.
-- **Update Status** — Determines whether a client needs to update.
-- **Release Information** — Stores release dates and build numbers.
-- **Update Severity** — Indicates the importance of an update.
-- **Changelog** — Provides a summary of changes for each release.
-- **Download Information** — Defines the download location for each version.
+The repository is designed to work with the Spectra API and associated distribution tools without requiring individual endpoints to maintain separate version registries.
+
+## Features
+
+- **Centralized Registry** — Maintains version metadata in a single JSON file.
+- **Version Checks** — Determines whether a client should update.
+- **Compatibility Validation** — Defines minimum supported versions.
+- **Build Tracking** — Uses numeric build identifiers for version comparisons.
+- **Release Metadata** — Stores release dates, download URLs, and changelogs.
+- **Update Severity** — Communicates the importance of a release.
+- **API Integration** — Provides endpoints for retrieving version information.
 
 ## API Reference
 
-### Base URL
+### Production
 
-Set the production base URL to your deployed Vercel application:
+Configure the base URL to point to your deployed Vercel application.
 
-`https://<your-deployment>.vercel.app`
+```text
+https://<your-deployment>.vercel.app
+```
 
-Replace the placeholder with the actual deployment domain.
+Replace `<your-deployment>` with the actual deployment domain.
 
 ### Endpoints
 
-| Endpoint | Method | Parameters | Description |
-|---|---|---|---|
-| `/api/check` | `GET` | `current` or `version` (optional) | Checks the latest release and determines update requirements. |
-| `/api/versions` | `GET` | None | Returns all registered versions, newest first. |
-| `/api/version` | `GET` | `id` (required) | Returns metadata for a specific version. |
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/check` | `GET` | Checks update requirements against the latest release. |
+| `/api/versions` | `GET` | Returns the registered versions, newest first. |
+| `/api/version?id=<id>` | `GET` | Retrieves metadata for a specific version. |
 
-### `GET /api/check`
+### Check for updates
 
-Checks the latest release against the client's current version.
+`GET /api/check`
 
-**Example request:**
+Checks the latest release and compares it against the client's current version.
 
-`/api/check?current=beta_1.0`
+**Query parameters**
 
-The `current` parameter can also be supplied as `version`, according to the API implementation.
+| Parameter | Required | Description |
+|---|---|---|
+| `current` | No | Current version identifier. |
+| `version` | No | Alternative parameter for specifying the current version. |
 
-**Example response:**
+Example:
+
+```http
+GET /api/check?current=beta_1.0
+```
+
+**Example response**
 
 ```json
 {
@@ -66,70 +91,74 @@ The `current` parameter can also be supplied as `version`, according to the API 
 }
 ```
 
-#### Response fields
+**Response fields**
 
 | Field | Description |
 |---|---|
-| `latestVersion` | Identifier of the latest release. |
-| `needsUpdate` | Indicates whether the client should update. |
-| `belowMinimum` | Indicates whether the client is below the minimum supported build. |
-| `downloadUrl` | Download URL of the latest release. |
-| `severity` | Update severity associated with the release. |
+| `latestVersion` | Latest registered release identifier. |
+| `needsUpdate` | Whether the client needs to update. |
+| `belowMinimum` | Whether the client is below the minimum supported build. |
+| `downloadUrl` | Download location of the latest release. |
+| `severity` | Severity assigned to the latest release. |
 | `minimumVersion` | Minimum supported version identifier. |
 | `releaseDate` | Release date in `YYYY-MM-DD` format. |
-| `build` | Build number of the latest release. |
+| `build` | Latest release build number. |
 | `changelog` | List of changes included in the release. |
-| `currentBuild` | Build number of the supplied client version. |
+| `currentBuild` | Build number associated with the supplied version. |
 | `latestBuild` | Build number of the latest release. |
 
-#### Version comparison
+#### Build comparison
 
-Update requirements are determined using numeric build numbers rather than comparing version identifier strings.
+Version checks rely on numeric build identifiers rather than lexical comparisons of version strings.
 
 - `needsUpdate` compares the current build against the latest build.
 - `belowMinimum` compares the current build against the minimum supported build.
-- `belowMinimum` may return `null` when the API cannot determine whether the supplied version meets the minimum requirement, such as when its metadata is unavailable.
+- `belowMinimum` can return `null` when the API cannot determine the current version's compatibility.
 
-This approach avoids relying on lexical comparisons between identifiers such as `beta_1.9` and `beta_1.10`.
+This avoids unreliable comparisons between identifiers such as `beta_1.9` and `beta_1.10`.
 
-### `GET /api/versions`
+### List all versions
+
+`GET /api/versions`
 
 Returns the registered version catalog, ordered from newest to oldest.
 
-Example:
+```http
+GET /api/versions
+```
 
-`/api/versions`
+### Retrieve a specific version
 
-Use this endpoint when a client or tool needs to retrieve the available release metadata.
-
-### `GET /api/version`
+`GET /api/version?id=<id>`
 
 Returns the metadata associated with a specific version identifier.
 
-**Example request:**
+```http
+GET /api/version?id=beta_1.0
+```
 
-`/api/version?id=beta_1.0`
-
-The `id` parameter is required.
+The `id` query parameter is required.
 
 ## Version Management
 
-All version metadata is maintained in:
+All release metadata is maintained in:
 
-`data/versions.json`
+```text
+data/versions.json
+```
 
-The API endpoints read from this file, so adding a release does not require modifying each endpoint individually.
+The API endpoints read from this file, keeping version information centralized.
 
-### Adding a new version
+### Adding a release
 
 1. Open `data/versions.json`.
-2. Add the new release under the `versions` object.
+2. Add the new version under the `versions` object.
 3. Assign a unique identifier and numeric build number.
-4. Set its minimum supported version, release date, update severity, changelog, and download URL.
-5. Update the top-level `latest` field when the release becomes the latest public version.
-6. Verify that the JSON is valid and the deployed API returns the expected metadata.
+4. Define the compatibility requirements and release metadata.
+5. Update `latest` when the new release becomes the latest public version.
+6. Verify the JSON and test the deployed API endpoints.
 
-**Example configuration:**
+**Example configuration**
 
 ```json
 {
@@ -152,46 +181,75 @@ The API endpoints read from this file, so adding a release does not require modi
 }
 ```
 
-The existing release entry is abbreviated in this example. Preserve the actual metadata fields required by your implementation.
+The existing release is abbreviated in this example. Preserve any additional fields required by the API implementation.
 
-### Versioning guidelines
+### Release guidelines
 
-- Use a unique identifier for every release.
-- Keep build numbers numeric and consistent.
-- Increment build numbers when publishing new builds.
-- Ensure the `latest` field references an existing version.
-- Ensure each `downloadUrl` points to the intended release artifact.
-- Set `minimumVersion` according to the compatibility requirements of the release.
-- Keep changelog entries concise and relevant.
+- Keep version identifiers unique.
+- Use numeric build numbers for reliable comparisons.
+- Ensure `latest` references an existing version.
+- Keep download URLs synchronized with the intended release artifacts.
+- Set `minimumVersion` according to actual compatibility requirements.
+- Maintain accurate release dates and changelogs.
 
 ## Spectra Ecosystem
 
-SpectraVersions supports version management across the Spectra ecosystem, including:
+SpectraVersions provides version metadata for components across the Spectra ecosystem.
 
-- **Spectra API** — Version metadata and update checks.
-- **Spectra Installer** — Release information for installation workflows.
-- **Spectra Updater** — Version comparison and update requirements.
-- **Spectra Studio Plugin** — Release compatibility and update checks.
+| Component | Purpose |
+|---|---|
+| Spectra API | Serves version information and update checks. |
+| Spectra Installer | Retrieves release information during installation. |
+| Spectra Updater | Evaluates version differences and update requirements. |
+| Spectra Studio Plugin | Checks release compatibility and update availability. |
+
+## Repository Structure
+
+```text
+SpectraVersions/
+├── api/
+│   ├── check
+│   ├── versions
+│   └── version
+├── data/
+│   └── versions.json
+├── versions/
+│   └── <release>.rbxmx
+├── LICENSE
+├── NOTICE
+├── TRADEMARKS.md
+└── README.md
+```
+
+*Illustrative structure based on the documented components; adjust paths to match the actual repository.*
 
 ## License & Trademarks
 
-This project is licensed under the **Apache License 2.0**, with a modified trademarks section covering the use of the names **Spectra** and **GCM Studio**.
+This project is licensed under the **Apache License 2.0**, with a modified trademarks section covering the use of the **Spectra** and **GCM Studio** names.
 
-Please review the following files for the applicable terms:
+Refer to the following files for the applicable terms:
 
 - [LICENSE](https://github.com/GCMStudio/SpectraVersions/blob/main/LICENSE)
 - [NOTICE](https://github.com/GCMStudio/SpectraVersions/blob/main/NOTICE)
 - [TRADEMARKS.md](https://github.com/GCMStudio/SpectraVersions/blob/main/TRADEMARKS.md)
 
-The Apache License does not, by itself, grant permission to use the project's protected trademarks beyond the rights expressly permitted by the applicable terms.
+The applicable trademark restrictions remain separate from the general copyright license grant.
 
 ---
+
+<div align="center">
+
+**GCM Studio · Spectra Ecosystem**
+
+*Centralized metadata. Consistent releases. Reliable version checks.*
+
+</div>
 
 ```text
 ░██████╗░░█████╗░███╗░░░███╗  ░██████╗████████╗██╗░░░██╗██████╗░██╗░█████╗░
 ██╔════╝░██╔══██╗████╗░████║  ██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██║██╔══██╗
 ██║░░██╗░██║░░╚═╝██╔████╔██║  ╚█████╗ ░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
-██║░░╚██╗██║░░██╗██║╚██╔╝██║  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
+██║░░╚██╗██║░░██╗██║╚  ╔╝██║  ░╚═══██╗░░░██║░░░██║░░░██║██║░░██║██║██║░░██║
 ╚██████╔╝╚█████╔╝██║░╚═╝░██║  ██████╔╝░░░██║░░░╚██████╔╝██████╔╝██║╚█████╔╝
 ░╚═════╝░░╚════╝░╚═╝░░░░░╚═╝  ╚═════╝░░░░╚═════╝░╚═════╝░╚═╝░░░░░╚═╝░░░░░
 ```
