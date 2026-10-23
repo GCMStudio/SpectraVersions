@@ -1,7 +1,7 @@
 # Trademarks
 
 This project is licensed under the Apache License, Version 2.0, with a
-modified Trademarks section (see `LICENSE.md`, Section 6). As stated
+modified Trademarks section (see `LICENSE`, Section 6). As stated
 there, the license does **not** grant permission to use the trade names,
 trademarks, service marks, logos, or product names of the Licensor,
 except as required for reasonable and customary use in describing the
